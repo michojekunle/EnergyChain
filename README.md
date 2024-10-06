@@ -1,10 +1,10 @@
-# Icarus: Decentralized Energy Marketplace DApp on Base Network
+# EnergyChain: Decentralized Energy Marketplace DApp on Base Network
 
 ## Project Overview
 
 The **Decentralized Energy Marketplace** aims to revolutionize energy trading by creating a transparent, efficient, and user-friendly platform for energy producers and consumers. This innovative project will leverage blockchain technology to establish a single smart contract where energy producers can list their available energy credits, allowing for seamless and transparent transactions. The platform is built on the **BASE network**, leveraging its scalability and efficiency for energy transactions.
 
-Deployed Smart contract on Scroll Sepolia Testnet: .....deployed link
+Deployed Smart contract on Base Sepolia Testnet: .....deployed link
 
 Live Link to interact: live-link.on.vercel
 
@@ -104,21 +104,21 @@ Create a `.env` file in the `smart-contracts` directory with the following varia
 ```
 ALCHEMY_SCROLL_RPC_URL=your_alchemy_scroll_rpc_url
 ACCOUNT_PRIVATE_KEY=your_wallet_private_key
-SCROLLSCAN_API_KEY=your_scrollscan_api_key
+BASESCAN_API_KEY=your_basescan_api_key
 ```
 
 - To get your Alchemy scroll rpc url you have to sign up on [Alchemy](https://auth.alchemy.com/#:~:text=Log%20in.%20Don't%20have%20an%20account?%20Signup.) and head to your dashboard <https://dashboard.alchemy.com/> to get your alchemy scroll rpc url
 
 ## Deploying Smart Contracts
 
-To deploy the smart contracts to Scroll Sepolia:
+To deploy the smart contracts to Base Sepolia:
 
 ```bash
 cd hardhat-contracts
 npx hardhat ignition deploy ignition/modules/Energy.ts --network base_sepolia
 ```
 
-To verify the contract on ScrollScan:
+To verify the contract on BaseScan:
 
 ```bash
 npx hardhat verify YOUR_CONTRACT_ADDRESS --network base_sepolia
