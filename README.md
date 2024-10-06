@@ -1,8 +1,8 @@
-# Icarus: Decentralized Energy Marketplace DApp on Scroll Sepolia
+# Icarus: Decentralized Energy Marketplace DApp on Base Network
 
 ## Project Overview
 
-The **Decentralized Energy Marketplace** aims to revolutionize energy trading by creating a transparent, efficient, and user-friendly platform for energy producers and consumers. This innovative project will leverage blockchain technology to establish a single smart contract where energy producers can list their available energy credits, allowing for seamless and transparent transactions. The platform is built on the **SCROLL network**, leveraging its scalability and efficiency for energy transactions provided by the **ALCHEMY RPC-URL**
+The **Decentralized Energy Marketplace** aims to revolutionize energy trading by creating a transparent, efficient, and user-friendly platform for energy producers and consumers. This innovative project will leverage blockchain technology to establish a single smart contract where energy producers can list their available energy credits, allowing for seamless and transparent transactions. The platform is built on the **BASE network**, leveraging its scalability and efficiency for energy transactions.
 
 Deployed Smart contract on Scroll Sepolia Testnet: .....deployed link
 
@@ -43,8 +43,7 @@ Live Link to interact: live-link.on.vercel
 - Styling: Tailwind CSS
 - Smart Contracts: Solidity
 - Development Environment: Hardhat
-- Blockchain Network: Scroll (Testnet)
-- RPC Provider: Alchemy
+- Blockchain Network: Base (Testnet)
 - Deployment: Hardhat Ignition
 
 ## Project Structure
@@ -109,7 +108,6 @@ SCROLLSCAN_API_KEY=your_scrollscan_api_key
 ```
 
 - To get your Alchemy scroll rpc url you have to sign up on [Alchemy](https://auth.alchemy.com/#:~:text=Log%20in.%20Don't%20have%20an%20account?%20Signup.) and head to your dashboard <https://dashboard.alchemy.com/> to get your alchemy scroll rpc url
-- To get your ScrollScan Api key you also have to sign up on [scrollscan](https://scrollscan.com/register) and then head to your dashboard to get your api key <https://scrollscan.com/myapikey>
 
 ## Deploying Smart Contracts
 
@@ -117,13 +115,13 @@ To deploy the smart contracts to Scroll Sepolia:
 
 ```bash
 cd hardhat-contracts
-npx hardhat ignition deploy ignition/modules/Energy.ts --network scroll_sepolia
+npx hardhat ignition deploy ignition/modules/Energy.ts --network base_sepolia
 ```
 
 To verify the contract on ScrollScan:
 
 ```bash
-npx hardhat verify YOUR_CONTRACT_ADDRESS --network scroll_sepolia
+npx hardhat verify YOUR_CONTRACT_ADDRESS --network base_sepolia
 ```
 
 Replace `YOUR_CONTRACT_ADDRESS` with the address of your deployed contract.
@@ -135,4 +133,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-# EnergyChain
