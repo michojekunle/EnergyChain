@@ -12,22 +12,20 @@ export function Basenames({ address }: DisplayBasenameProps) {
   return (
     <Identity
       address={address}
-      // @ts-ignore
+      // @ts-expect-error  This is necessary due to TypeScript inference limitations
       chain={baseSepolia}
       schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
       hasCopyAddressOnClick={true}
       className="w-full relative"
     >
-      
       <Avatar 
         address={address} 
-        // @ts-ignore
+        // @ts-expect-error  This is necessary due to TypeScript inference limitations
         chain={baseSepolia} 
       />
-      // @ts-ignore
       <Name 
         address={address}
-        // @ts-ignore 
+        // @ts-expect-error  This is necessary due to TypeScript inference limitations 
         chain={baseSepolia} 
         className="truncate w-full text-blue-400"
       />

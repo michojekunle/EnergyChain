@@ -9,7 +9,7 @@ import { useAccountModal } from "@rainbow-me/rainbowkit";
 interface ProfileCardProps {
   name: string;
   walletAddress: string;
-  profileImage: any;
+  profileImage: React.ReactNode;
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({

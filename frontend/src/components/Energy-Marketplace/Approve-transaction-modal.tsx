@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+// import { useState } from "react";
 import { X } from "lucide-react";
 import {
   Dialog,
@@ -44,7 +44,7 @@ export function ApproveTransactionModal({
             {totalCost.toLocaleString()} ENRG
           </h2>
           <p className="text-sm text-gray-500">
-            You'll need to review and sign the smart contract in your wallet to
+            You&apos;ll need to review and sign the smart contract in your wallet to
             proceed with this transaction
           </p>
         </div>

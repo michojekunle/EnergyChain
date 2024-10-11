@@ -19,7 +19,7 @@ export function DashboardLayout({
     } else {
       setLoading(false);
     }
-  }, [isConnected, address]);
+  }, [isConnected, address, router]);
 
   if (loading) {
     return <div>Loading...</div>; // Display a loading screen while checking the connection

@@ -24,7 +24,7 @@ export function Providers({ children, initialState }: Props) {
         <RainbowKitProvider>
           <OnchainKitProvider
             apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
-            // @ts-ignore
+            // @ts-expect-error This is necessary due to TypeScript inference limitations
             chain={baseSepolia}
           >
           {children}

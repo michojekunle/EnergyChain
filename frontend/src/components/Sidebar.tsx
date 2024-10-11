@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   async function fetchBasename(address: `0x${string}`) {
     try {
-      // @ts-ignore
+      // @ts-expect-error This is necessary due to TypeScript inference limitations
       const basename = await getName({ address, chain: baseSepolia });
       if (basename) {
         setName(basename);
@@ -32,7 +32,7 @@ const Sidebar = () => {
 
   async function fetchAvatar(name: string) {
     try {
-      // @ts-ignore
+      // @ts-expect-error This is necessary due to TypeScript inference limitations
       const baseAvatar = await getAvatar({ ensName: name, chain: baseSepolia });
       if (baseAvatar) {
         setAvatarUrl(baseAvatar);

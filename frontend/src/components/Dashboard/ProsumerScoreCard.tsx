@@ -25,7 +25,7 @@ export default function ProsumerScoreCard({ className }: ProsumerScoreCardProps)
 
   async function fetchBasename(address: `0x${string}`) {
     try {
-      // @ts-ignore
+      // @ts-expect-error This is necessary due to TypeScript inference limitations
       const basename = await getName({ address, chain: baseSepolia });
       if (basename) {
         setName(basename);
@@ -40,7 +40,7 @@ export default function ProsumerScoreCard({ className }: ProsumerScoreCardProps)
   useEffect(() => {
     async function fetchData() {
       if (isConnected && address) {
-        const fetchedName = await fetchBasename(address as `0x${string}`);
+        await fetchBasename(address as `0x${string}`);
       }
     }
 
