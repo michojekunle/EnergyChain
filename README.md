@@ -86,8 +86,8 @@ The project uses a custom ERC20 token called ICAR (Icar Token) for energy tradin
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/codequest07/Icarus.git
-cd Icarus
+git clone https://github.com/michojekunle/EnergyChain.git
+cd EnergyChain
 npm install
 ```
 
