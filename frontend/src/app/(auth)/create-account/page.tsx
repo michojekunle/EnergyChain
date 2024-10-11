@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ArrowRight } from "lucide-react";
 import {
   icon_discord,
@@ -20,9 +19,8 @@ import {
   useAccount,
   useConnect,
   useDisconnect,
-  useWalletClient,
-  useConnectors,
 } from "wagmi";
+import { injected } from 'wagmi/connectors';
 import { baseSepolia } from "viem/chains";
 import { useRouter } from "next/navigation";
 
@@ -30,7 +28,6 @@ const CreateAccount = () => {
   const { connect } = useConnect();
   const { disconnect } = useDisconnect();
   const { address, isConnected } = useAccount();
-  const connectors = useConnectors();
   const router = useRouter();
 
   const [hasAttemptedConnection, setHasAttemptedConnection] = useState(false);
@@ -54,7 +51,7 @@ const CreateAccount = () => {
   const handleConnect = () => {
     setHasAttemptedConnection(true);
     localStorage.setItem("hasConnected", "true");
-    connect({ chainId: baseSepolia.id, connector: connectors[0] });
+    connect({ chainId: baseSepolia.id, connector: injected() });
   };
 
   const handleDisconnect = () => {
