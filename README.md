@@ -13,11 +13,11 @@ check out our live demo vide here: --- demo video here
 
 The **Decentralized Energy Marketplace** aims to revolutionize energy trading by creating a transparent, efficient, and user-friendly platform for energy producers and consumers. This innovative project will leverage blockchain technology to establish a single smart contract where energy producers can list their available energy credits, allowing for seamless and transparent transactions. The platform is built on the **Base network**, leveraging its scalability and efficiency for energy transactions provided by the **ALCHEMY RPC-URL**
 
-Deployed Smart contract on Base Sepolia Testnet: https://sepolia.basescan.org/address/0x3335BaEEDdD1Cc77B8Ab9acBF862764812337a3F
-https://sepolia.basescan.org/address/0x9f3eB17a20a4E57Ed126F34061b0E40dF3a4f5C2
+Deployed Smart contract on Base Sepolia Testnet: 
+- Energy Contract: [0x3335BaEEDdD1Cc77B8Ab9acBF862764812337a3F](https://sepolia.basescan.org/address/0x3335BaEEDdD1Cc77B8Ab9acBF862764812337a3F)
+- ICAR token contract: [0x9f3eB17a20a4E57Ed126F34061b0E40dF3a4f5C2](https://sepolia.basescan.org/address/0x9f3eB17a20a4E57Ed126F34061b0E40dF3a4f5C2)
 
-Live Link to interact: --live link here
-
+Live Link to interact: [Energy Chain](https://energy-chain-pi.vercel.app/)
 
 ### Objectives
 
