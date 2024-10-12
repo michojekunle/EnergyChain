@@ -111,36 +111,37 @@ contract Energy {
     event Deposit(address indexed user, uint amount);
     event MarketActivity(address indexed user, string typeOfTx, uint amount, uint units, uint timestamp);
 
-
-    // Mapping to store registered producers
-    mapping(address => Producer) public producers;
-
-    // Mapping to store balances of users
+   /**
+     * @dev Mapping to store balances of users
+    */
     mapping(address => uint) public balances;
 
-    // Mapping to store energy credits for buyers
-    mapping(address => mapping(address => uint)) public buyerCredits; // producer => buyer => credits
-    mapping(address => uint) public energyUsage;
+    /**
+     * @dev Mapping to store transactions
+    */
+    mapping (address => Transaction[]) public transactions;
 
-    mapping (address => bool) public isUserProducer;
+    /**
+     * @dev Mapping to store listings
+    */
+    mapping (address => Listing) public listings;
 
-    // Producers can register their available energy credits and the price per unit
-    function registerProducer(uint _energyCredits, uint _pricePerUnit) external {
-        if (msg.sender == address(0)) revert AddressZeroDetected();
-        if (_energyCredits == 0 || _pricePerUnit == 0) revert ZeroValueNotAllowed();
+    /**
+     * @dev Mapping to track deposited balances
+    */
+    mapping(address => uint) public depositedBalances;
 
-        // Check if this producer is already in the system
-        if (producers[msg.sender].energyCredits != 0) revert ProducerAlreadyRegistered();
-        
-        // Register the producer with the provided details
-        producers[msg.sender] = Producer(msg.sender, _energyCredits, _pricePerUnit, 0);
-
-        // Add the new producer to the array
-        allProducerAddresses.push(msg.sender);
-        isUserProducer[msg.sender] = true;
-        
-        // Log the producer registration
-        emit ProducerRegistered(msg.sender, _energyCredits, _pricePerUnit);
+    /**
+     * @dev Function to get all listings for the marketplace
+     * @return An array of all listings
+    */
+    function getAllListings() public view returns (Listing[] memory) {
+        if (listings[msg.sender].producer == address(0)) revert OnlyProducerAllowed();
+        Listing[] memory allListings = new Listing[](allProducerAddresses.length);
+        for (uint i = 0; i < allProducerAddresses.length; i++) {
+            allListings[i] = listings[allProducerAddresses[i]];
+        }
+        return allListings;
     }
 
     
