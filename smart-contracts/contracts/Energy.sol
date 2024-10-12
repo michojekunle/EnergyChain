@@ -61,20 +61,55 @@ contract Energy {
         _;
     }
 
-    struct Producer {
-        address producerAddress;
-        uint energyCredits;
-        uint pricePerUnit;
-        uint tokenBalance;
+    /**
+     * @dev Struct to represent a transaction
+    */
+    struct Transaction {
+        uint id;
+        string typeOfTx;
+        uint256 amount;
+        uint256 units;
+        uint256 timestamp;
+        address user;
     }
 
-    event ProducerRegistered(address producer, uint energyCredits, uint pricePerUnit);
-    event UnitsUpdated(address producer, uint energyCredits);
-    event PriceUpdated(address producer, uint pricePerUnit);
-    event EnergyCreditsPurchased(address buyer, address producer, uint creditAmount);
-    event EnergyCreditsTransferred(address from, address to, uint creditAmount);
-    event EnergyUsageTracked(address buyer, uint usageAmount);
-    event ProducerWithdrawal(address producer, uint amount);
+    /**
+     * @dev Struct to represent a listing transaction
+    */
+    struct ListingTransaction {
+        uint256 id;
+        uint256 units;
+        uint256 rate;
+        uint256 amount;
+        uint256 timestamp;
+    }
+
+    /**
+     * @dev Struct to represent a listing
+    */
+    struct Listing {
+        uint256 id;
+        uint256 rate;
+        uint256 units;
+        uint256 minorder;
+        uint256 maxOrder;
+        uint256 timestamp;
+        address producer;
+        ListingTransaction[] transactions;
+    }
+
+    /**
+     * @dev Events emitted by the contract
+    */
+    event ListingSuccessful(address indexed producer, uint units, uint rate);
+    event UnitsUpdated(address indexed producer, uint energyCredits);
+    event RateUpdated(address indexed producer, uint pricePerUnit);
+    event EnergyCreditsPurchased(address indexed buyer, address producer, uint unitAmount);
+
+
+    event WithdrawalSuccessful(address indexed producer, uint amount);
+    event Deposit(address indexed user, uint amount);
+    event MarketActivity(address indexed user, string typeOfTx, uint amount, uint units, uint timestamp);
 
 
     // Mapping to store registered producers
