@@ -192,36 +192,48 @@ contract Energy {
     }
 
     
-
-    // Producers can update the amount of energy credits they have available
+    /**
+     * @dev Function for producers to update the amount of energy credits they have available
+     * @param _newCredits The new amount of energy credits
+    */
     function updateEnergyCredits(uint _newCredits) external onlyProducer {
+
+        Listing storage listing = listings[msg.sender];
+
         if (msg.sender == address(0)) revert AddressZeroDetected();
+        if (listing.producer == address(0)) revert NoListingsFound();
+        if (listing.producer != msg.sender) revert CallerNotProducer();
 
-        if (producers[msg.sender].energyCredits == _newCredits) revert UpdatedpriceIsSame();
-
+        if (listing.units == _newCredits) revert UpdatedpriceIsSame();
         if (_newCredits == 0) revert ZeroValueNotAllowed();
 
         // Update the producer’s energy credits
-        producers[msg.sender].energyCredits = _newCredits;
+        listing.units = _newCredits;
 
         // Log the update
         emit UnitsUpdated(msg.sender, _newCredits);
     }
 
-    // Producers can update the price per energy unit they are selling
-    function updatePricePerUnit(uint _newPrice) external onlyProducer {
+     /**
+     * @dev Function for producers to update the price per energy unit they are selling
+     * @param _newRate The new price per unit
+    */
+    function updateRate(uint _newRate) external onlyProducer {
+
+        Listing storage listing = listings[msg.sender];
 
         if (msg.sender == address(0)) revert AddressZeroDetected();
+        if (listing.producer == address(0)) revert NoListingsFound();
+        if (listing.producer != msg.sender) revert CallerNotProducer();
 
-        if (producers[msg.sender].pricePerUnit == _newPrice) revert UpdatedpriceIsSame();
-       
-        if (_newPrice == 0) revert ZeroValueNotAllowed();
+        if (listing.rate == _newRate) revert UpdatedRateIsSame();
+        if (_newRate == 0) revert ZeroValueNotAllowed();
 
         // Update the price per unit
-        producers[msg.sender].pricePerUnit = _newPrice;
+        listing.rate = _newRate;
 
         // Log the price update
-        emit PriceUpdated(msg.sender, _newPrice);
+        emit RateUpdated(msg.sender, _newRate);
     }
 
     // Buyers can purchase energy credits from a specific producer
