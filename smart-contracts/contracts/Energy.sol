@@ -18,26 +18,46 @@ contract Energy {
     error InsufficientBalance();
     error CallerNotProducer();
     error UpdatedpriceIsSame();
+    error UpdatedRateIsSame();
+    error NoListingsFound();
     
 
+    /**
+     * @dev The owner of the contract
+    */
     address public owner;
-    address public energyToken;
+    /**
+     * @dev The energy token contract
+    */
+    IERC20 public energyToken;
 
-    // Array to store all producer addresses
+    /**
+     * @dev Array to store all producer addresses
+    */
     address[] private allProducerAddresses;
 
+    /**
+     * @dev Contract constructor
+     * @param _energyToken The address of the energy token contract
+    */
     constructor(address _energyToken) {
         owner = msg.sender;
-        energyToken = _energyToken;
+        energyToken = IERC20(_energyToken);
     }
 
+    /**
+     * @dev Modifier to restrict access to only the owner
+    */
     modifier onlyOwner {
-        require(msg.sender == owner, "Only owner can call this function");
+        if (msg.sender != owner) revert OnlyOwnerAllowed();
         _;
     }
 
+    /**
+     * @dev Modifier to restrict access to only producers
+    */
     modifier onlyProducer {
-        require(isUserProducer[msg.sender], "Caller is not a producer");
+        if (listings[msg.sender].producer == address(0)) revert OnlyProducerAllowed();
         _;
     }
 
