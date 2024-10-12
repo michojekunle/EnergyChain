@@ -144,6 +144,53 @@ contract Energy {
         return allListings;
     }
 
+     /**
+     * @dev Function to add a transaction
+     * @param typeOfTx The type of transaction
+     * @param amount The amount of the transaction
+     * @param units The units of the transaction
+     * @param user The address of the user making the transaction
+    */
+    function addTransaction(string memory typeOfTx, uint amount, uint units, address user) internal {
+        uint id = transactions[user].length + 1;
+        Transaction storage newTx = transactions[user].push();
+        newTx.id = id;
+        newTx.typeOfTx = typeOfTx;
+        newTx.amount = amount;
+        newTx.units = units;
+        newTx.timestamp = block.timestamp;
+        newTx.user = user;
+
+        emit MarketActivity(user, typeOfTx, amount, units, block.timestamp);
+    }
+
+    /**
+     * @dev Function for producers to register their energy credits
+     * @param rate The rate per unit of energy credit
+     * @param units The number of energy credits available for sale
+     * @param minorder The minimum order size
+     * @param maxorder The maximum order size
+    */
+    function addListing(uint rate, uint units, uint minorder, uint maxorder) external {
+        if (msg.sender == address(0)) revert AddressZeroDetected();
+        if (rate == 0 || units == 0 || minorder == 0 || maxorder == 0) revert ZeroValueNotAllowed();
+        if (listings[msg.sender].producer != address(0)) revert ProducerAlreadyRegistered();
+
+        uint id = allProducerAddresses.length + 1;
+        listings[msg.sender].id = id;
+        listings[msg.sender].rate = rate;
+        listings[msg.sender].units = units;
+        listings[msg.sender].minorder = minorder;
+        listings[msg.sender].maxOrder = maxorder;
+        listings[msg.sender].timestamp = block.timestamp;
+        listings[msg.sender].producer = msg.sender;
+       
+
+        allProducerAddresses.push(msg.sender);
+
+        emit ListingSuccessful(msg.sender, units, rate);
+    }
+
     
 
     // Producers can update the amount of energy credits they have available
