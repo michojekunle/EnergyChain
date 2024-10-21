@@ -2,7 +2,6 @@ import express, { Request, Response, NextFunction } from 'express';
 import { getAllBuyers, getBuyerById, loginBuyer, registerBuyer } from '../controllers/buyerController';
 
 const router = express.Router();
-   
 
 router.post('/register', async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -28,6 +27,7 @@ router.get('/buyerById', async (req: Request, res: Response, next: NextFunction)
 });
 router.get('/allBuyers', async (req: Request, res: Response, next: NextFunction) => {
     try {
+        console.log("hello");
         await getAllBuyers(req, res);
     } catch (error) {
         next(error); 
