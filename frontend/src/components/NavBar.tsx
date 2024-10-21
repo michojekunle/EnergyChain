@@ -1,5 +1,7 @@
 "use client";
+import MemoDeGridLogo from "@/icons/de-grid-logo";
 import { Menu, X, Zap } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -11,13 +13,10 @@ export default function NavBarr() {
   };
   return (
     <div className="w-full fixed top-0 z-10  bg-white">
-      <header className=" container mx-auto px-4 py-6">
+      <header className=" container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <Zap className="h-6 w-6 sm:h-8 sm:w-8 text-green-600" />
-            <span className="text-xl sm:text-2xl font-bold text-green-800">
-              EnergyChain
-            </span>
+            <Image src="/de-grid-logo.png" alt="logo" className="w-[150px] h-[70px]" width={200} height={200}/>
           </div>
           <nav className="hidden md:block">
             <ul className="flex space-x-4">

@@ -5,7 +5,7 @@ import MemoArrowUpRight from "@/icons/arrowUpRight";
 
 export default function Hero() {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 mt-8">
       <h1 className="text-3xl md:text-5xl font-bold text-[#4A5D23] mb-8">
         Clean energy for all, starting with your neighbourhood
       </h1>
