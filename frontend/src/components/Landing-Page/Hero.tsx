@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import MemoBase from "@/icons/Base";
 import MemoArrowUpRight from "@/icons/arrowUpRight";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -34,10 +35,12 @@ export default function Hero() {
               </div>
             </div>
           </div>
-          <Button className="bg-[#373D20] hover:bg-[#3A4D13] text-white w-full py-6 text-lg">
-            Join the energy wave
-            <MemoArrowUpRight className="ml-2 h-8 w-8" />
-          </Button>
+          <Link href="/create-account">
+            <Button className="bg-[#373D20] hover:bg-[#3A4D13] text-white w-full py-6 text-lg">
+              Join the energy wave
+              <MemoArrowUpRight className="ml-2 h-8 w-8" />
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
