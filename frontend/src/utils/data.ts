@@ -1,5 +1,5 @@
 import MemoAccount from "@/icons/Account";
-import MemoBulb from "@/icons/Bulb";
+// import MemoBulb from "@/icons/Bulb";
 import MemoBulb2 from "@/icons/Bulb2";
 import MemoBusiness from "@/icons/Business";
 import MemoChurch from "@/icons/Church";
@@ -60,13 +60,13 @@ export const Statistics = [
     bgColor: "#FFEFEB",
     textColor: "#CD5334",
   },
-  {
-    icon: MemoBulb,
-    title: "Energy generated",
-    value: "54,6893",
-    unit: "KWH",
-    bgColor: "#E6F6E4",
-  },
+  // {
+  //   icon: MemoBulb,
+  //   title: "Energy generated",
+  //   value: "54,6893",
+  //   unit: "KWH",
+  //   bgColor: "#E6F6E4",
+  // },
   {
     icon: MemoPerformance,
     title: "Performance",

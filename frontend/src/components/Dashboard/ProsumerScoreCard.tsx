@@ -17,9 +17,19 @@ import { getName } from "@coinbase/onchainkit/identity";
 
 interface ProsumerScoreCardProps {
   className?: string;
+  data?: { energyBalance: number };
 }
 
-export default function ProsumerScoreCard({ className }: ProsumerScoreCardProps) {
+// interface IData {
+//   energyGenerated: number;
+//   energyInUse: number;
+//   energyInSurplus: number;
+//   energySold: number;
+//   energyBalance: number;
+//   energyBought: number;
+// }
+
+export default function ProsumerScoreCard({ className, data }: ProsumerScoreCardProps) {
   const { address, isConnected } = useAccount();
   const [name, setName] = useState<string>("");
 
@@ -77,7 +87,7 @@ export default function ProsumerScoreCard({ className }: ProsumerScoreCardProps)
           Energy balance
         </h3>
         <p className="mt-2 text-[#21250F] text-xl  font-[600]">
-          54,758.08 <span className="text-[#575757] text-xs">KWH</span>
+          {data?.energyBalance} <span className="text-[#575757] text-xs">KWH</span>
         </p>
       </CardContent>
     </Card>
