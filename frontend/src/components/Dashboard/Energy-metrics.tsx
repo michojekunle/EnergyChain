@@ -1,10 +1,19 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { metrics } from "@/utils/data";
+// import { metrics } from "@/utils/data";
 import MetricCard from "./MetricCard";
 
-export default function EnergyMetrics() {
+interface IData {
+  energyGenerated: number;
+  energyInUse: number;
+  energyInSurplus: number;
+  energySold: number;
+  energyBalance: number;
+  energyBought: number;
+}
+
+export default function EnergyMetrics({ data }:{data: IData}) {
   const totalEnergyProduced = 54758.08;
 
   return (
@@ -20,9 +29,40 @@ export default function EnergyMetrics() {
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-          {metrics.map((metric, index) => (
-            <MetricCard key={index} {...metric} />
-          ))}
+          {/* {metrics.map((metric, index) => (
+            <MetricCard key={index} {...metric} data={data} />
+          ))} */}
+          <MetricCard 
+            // key={index} 
+            title={"Energy in use (locally)"}
+            value={data.energyInUse} 
+            percentage={data.energyInUse/100}
+            color="text-[#47682C]"
+            bg="text-[#47682C30]" />
+
+          <MetricCard 
+            // key={index} 
+            title="Energy in surplus"
+            value={data.energyInSurplus} 
+            percentage={data.energyInSurplus/100}
+            color="text-[#CD5334]"
+            bg="text-[#CD533430]" />
+
+          <MetricCard 
+            // key={index} 
+            title="Energy sold"
+            value={data.energySold} 
+            percentage={data.energySold/100}
+            color="text-[#0460FF]"
+            bg="text-[#0460FF30]" />
+
+          <MetricCard 
+            // key={index} 
+            title="Energy bought" 
+            value={data.energyBought}
+            percentage={data.energyBought/100}
+            color="text-[#FF043230]"
+            bg="text-[#FF043230]" />
         </div>
       </CardContent>
     </Card>

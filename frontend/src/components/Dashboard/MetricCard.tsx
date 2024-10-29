@@ -60,7 +60,8 @@ const MetricCard = ({
       <CircularProgressBar percentage={percentage} color={color} bg={bg} />{" "}
     </CardHeader>
     <CardContent className="flex items-center space-x-2">
-      <div className="text-2xl font-bold">{value.toLocaleString()}</div>
+    {/* .toLocaleString() */}
+      <div className="text-2xl font-bold">{value}</div>
       <p className="text-xs text-muted-foreground">kWh</p>
     </CardContent>
   </div>
