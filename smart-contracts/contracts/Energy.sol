@@ -4,8 +4,16 @@ pragma solidity ^0.8.24;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
-contract Energy {
+/**
+ * @title Energy
+ * @author [Your Name]
+ * @notice This contract manages the energy credits marketplace. It allows producers to register and update their energy credits, buyers to purchase energy credits, and producers to withdraw their balance.
+*/
+contract Energy is ReentrancyGuard{
 
+    /**
+     * @dev Custom errors for the contract
+    */
     error AddressZeroDetected();
     error ZeroValueNotAllowed();
     error ProducerAlreadyRegistered();
@@ -20,7 +28,6 @@ contract Energy {
     error UpdatedpriceIsSame();
     error UpdatedRateIsSame();
     error NoListingsFound();
-    
 
     /**
      * @dev The owner of the contract
@@ -111,7 +118,7 @@ contract Energy {
     event Deposit(address indexed user, uint amount);
     event MarketActivity(address indexed user, string typeOfTx, uint amount, uint units, uint timestamp);
 
-   /**
+    /**
      * @dev Mapping to store balances of users
     */
     mapping(address => uint) public balances;
@@ -136,7 +143,7 @@ contract Energy {
      * @return An array of all listings
     */
     function getAllListings() public view returns (Listing[] memory) {
-        if (listings[msg.sender].producer == address(0)) revert OnlyProducerAllowed();
+       
         Listing[] memory allListings = new Listing[](allProducerAddresses.length);
         for (uint i = 0; i < allProducerAddresses.length; i++) {
             allListings[i] = listings[allProducerAddresses[i]];
@@ -144,7 +151,7 @@ contract Energy {
         return allListings;
     }
 
-     /**
+    /**
      * @dev Function to add a transaction
      * @param typeOfTx The type of transaction
      * @param amount The amount of the transaction
@@ -174,7 +181,7 @@ contract Energy {
     function addListing(uint rate, uint units, uint minorder, uint maxorder) external {
         if (msg.sender == address(0)) revert AddressZeroDetected();
         if (rate == 0 || units == 0 || minorder == 0 || maxorder == 0) revert ZeroValueNotAllowed();
-        if (listings[msg.sender].producer != address(0)) revert ProducerAlreadyRegistered();
+       
 
         uint id = allProducerAddresses.length + 1;
         listings[msg.sender].id = id;
@@ -190,7 +197,6 @@ contract Energy {
 
         emit ListingSuccessful(msg.sender, units, rate);
     }
-
     
     /**
      * @dev Function for producers to update the amount of energy credits they have available
@@ -214,7 +220,7 @@ contract Energy {
         emit UnitsUpdated(msg.sender, _newCredits);
     }
 
-     /**
+    /**
      * @dev Function for producers to update the price per energy unit they are selling
      * @param _newRate The new price per unit
     */
@@ -321,5 +327,4 @@ contract Energy {
     function getContractBalance() external view onlyOwner returns (uint) {
         return energyToken.balanceOf(address(this));
     }
-
 }
