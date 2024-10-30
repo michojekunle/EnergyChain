@@ -35,32 +35,32 @@ export default function EnergyMetrics({ data }:{data: IData}) {
           <MetricCard 
             // key={index} 
             title={"Energy in use (locally)"}
-            value={data.energyInUse} 
-            percentage={data.energyInUse/100}
+            value={data?.energyInUse || 0} 
+            percentage={(data?.energyInUse || 0) /100}
             color="text-[#47682C]"
             bg="text-[#47682C30]" />
 
           <MetricCard 
             // key={index} 
             title="Energy in surplus"
-            value={data.energyInSurplus} 
-            percentage={data.energyInSurplus/100}
+            value={data?.energyInSurplus || 0} 
+            percentage={(data?.energyInSurplus || 0) /100}
             color="text-[#CD5334]"
             bg="text-[#CD533430]" />
 
           <MetricCard 
             // key={index} 
             title="Energy sold"
-            value={data.energySold} 
-            percentage={data.energySold/100}
+            value={data?.energySold || 0} 
+            percentage={(data?.energySold || 0 ) / 100}
             color="text-[#0460FF]"
             bg="text-[#0460FF30]" />
 
           <MetricCard 
             // key={index} 
             title="Energy bought" 
-            value={data.energyBought}
-            percentage={data.energyBought/100}
+            value={data?.energyBought || 0}
+            percentage={(data?.energyBought || 0) /100}
             color="text-[#FF043230]"
             bg="text-[#FF043230]" />
         </div>
